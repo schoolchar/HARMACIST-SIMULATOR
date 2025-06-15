@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1c393b1203230b46839f8a6e447d6b7, type: 3}
+  m_Name: Bob
+  m_EditorClassIdentifier: 
+  idName: Bob McLastname
+  characterSprite: {fileID: 21300000, guid: e6aae77dc13a8dd45b721d0198f4e19a, type: 3}
+  IDPhoto: {fileID: 21300000, guid: 5457ebebc34203743b0676053266f2e4, type: 3}
+  age: 54
+  gender: 77
+  order:
+  - drugName: Morphine
+    dosage: 800
+    doseTime:
+      hour: 3
+      minute: 45
+      am: 1
+    dosageRate: 4
