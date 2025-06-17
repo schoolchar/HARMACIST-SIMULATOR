@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -10,18 +11,25 @@ public class SlotInteraction : MonoBehaviour
 
     private Vector3 screenPoint;
     private Vector3 offset;
-
+    Vector2 ogPos;
     [SerializeField] private Transform[] slotPosPre;
-    [SerializeField] private Vector3[] slotPos;
+    [SerializeField] private Vector2[] slotPos;
+
+    private Vector2 newPos;
+    bool dragging;
+    GameObject otherSlot;
+    
 
     private void Start()
     {
         int _len = slotPosPre.Length;
-        slotPos = new Vector3[_len];
+        slotPos = new Vector2[_len];
         for(int i = 0; i < _len; i++)
         {
             slotPos[i] = transform.position;
         }
+
+        ogPos = transform.position;
     }
 
     void OnMouseDown()
@@ -30,6 +38,7 @@ public class SlotInteraction : MonoBehaviour
 
         offset = gameObject.transform.position - Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, screenPoint.z));
 
+        dragging = true;
     }
 
     void OnMouseDrag()
@@ -44,30 +53,51 @@ public class SlotInteraction : MonoBehaviour
     private void OnMouseUp()
     {
         ResetToSlot();
+        dragging = false;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(dragging)
+        {
+            newPos = collision.transform.position;
+            otherSlot = collision.gameObject;
+        }
+            
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(dragging)
+        {
+            newPos = Vector2.zero;
+            otherSlot = null;
+        }
+           
+    }
+
 
     void ResetToSlot()
     {
         //When player drags item and drops it, make it automatically go to nearest slot
+        //Does not work well
 
-        Vector3 _closest = new Vector3(0,0,0);
-        float _closestDistance = 0;
-        int _len = slotPos.Length;
+         if (otherSlot == null)
+         {
+            
+            transform.position = ogPos;
 
-        for(int i = 0; i < _len; i++)
-        {
-           
-            float _distance = Mathf.Sqrt(((transform.position.x - slotPos[i].x) * (transform.position.x - slotPos[i].x)) + ((transform.position.y - slotPos[i].y) * (transform.position.y - slotPos[i].y)));
-            Debug.Log("Closest - " + _closestDistance + " this " + _distance);
-            if(_closestDistance == 0 || _closestDistance > _distance)
-            {
-                _closest = slotPos[i];
-                _closestDistance = _distance;
-            }
-        }
+             
+         }
+         else
+         {
+            
+            transform.position = newPos;
+            otherSlot.transform.position = ogPos;
+            ogPos = transform.position;
+         }
 
-        transform.position = _closest;
-
+       
     }
 
 

@@ -109,7 +109,7 @@ public class SalesManager : MonoBehaviour
         {
             arr[i] = output[i];
             currentLine.Enqueue(allCustomers[arr[i]]);
-            Debug.Log("Put in line " + allCustomers[arr[i]]);
+            //Debug.Log("Put in line " + allCustomers[arr[i]]);
         }
     } //END CreatelinePt2()
 
