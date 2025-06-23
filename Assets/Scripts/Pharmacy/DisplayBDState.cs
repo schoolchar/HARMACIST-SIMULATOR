@@ -22,6 +22,7 @@ public class DisplayBDState : MonoBehaviour
     /// </summary>
     public void DisplayStressSprite()
     {
+        //Use stress level to pick sprite to show
         try
         {
             belladonnaStress.sprite = stateSprites[characterStates.stressLevel];
