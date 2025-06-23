@@ -20,8 +20,16 @@ public class SalesManager : MonoBehaviour
     public Queue<CustomerBase> currentLine;
     int numTotalCustomers;
 
+
+    [Header("Shelf display")]
+    public GameObject displayMenu;
+    public Button[] inventoryItems;
+    public SpriteRenderer[] shelfSlots;
+    InventoryManager inventoryManager;
+
     private void Start()
     {
+        inventoryManager = FindAnyObjectByType<InventoryManager>();
         currentLine = new Queue<CustomerBase>();
         numTotalCustomers = allCustomers.Length;
         //Testing
@@ -112,5 +120,35 @@ public class SalesManager : MonoBehaviour
             //Debug.Log("Put in line " + allCustomers[arr[i]]);
         }
     } //END CreatelinePt2()
+
+
+    public void ShowItems()
+    {
+        displayMenu.SetActive(true);
+        for (int i = 0; i < inventoryManager.inventorySize; i++)
+        {
+            if (inventoryManager.inventory[i] == null)
+            {
+                inventoryItems[i].image.enabled = false;
+                continue;
+            }
+            inventoryItems[i].image.enabled = true;
+            inventoryItems[i].image.sprite = inventoryManager.inventory[i].shelfSprite;
+        }
+
+    }
+
+    public void ChooseItemToDisplay(int _index)
+    {
+        if (inventoryManager.inventory[_index].display)
+        {
+            bool _x = inventoryManager.SetItemsOnShelf(inventoryManager.inventory[_index]);
+            if (_x)
+            {
+                displayMenu.SetActive(false);
+            }
+        }
+
+    }
 
 }

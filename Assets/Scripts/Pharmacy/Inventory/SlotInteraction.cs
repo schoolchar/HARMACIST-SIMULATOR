@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Allow player to interact with items on shelf
@@ -18,10 +18,12 @@ public class SlotInteraction : MonoBehaviour
     private Vector2 newPos;
     bool dragging;
     GameObject otherSlot;
+
     
 
     private void Start()
     {
+        
         int _len = slotPosPre.Length;
         slotPos = new Vector2[_len];
         for(int i = 0; i < _len; i++)
@@ -101,5 +103,6 @@ public class SlotInteraction : MonoBehaviour
     }
 
 
+  
 
 } //END SlotInteraction.cs

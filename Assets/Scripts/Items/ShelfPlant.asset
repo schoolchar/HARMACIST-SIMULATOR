@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ShelfPlant
   m_EditorClassIdentifier: 
   itemName: Decorative Plant
-  shelfSprite: {fileID: 0}
+  shelfSprite: {fileID: 21300000, guid: 47fe8c13c673f554f83e922ce68abc60, type: 3}
   display: 1
   numberOwned: 0

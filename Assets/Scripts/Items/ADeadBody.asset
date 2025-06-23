@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ADeadBody
   m_EditorClassIdentifier: 
   itemName: Dead Body
-  shelfSprite: {fileID: 0}
+  shelfSprite: {fileID: 21300000, guid: 03106902eb6d32346bfaa3e48b673c73, type: 3}
   display: 0
   numberOwned: 0

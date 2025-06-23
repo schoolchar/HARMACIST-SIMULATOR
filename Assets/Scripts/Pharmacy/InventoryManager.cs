@@ -14,6 +14,8 @@ public class InventoryManager : MonoBehaviour
     void Awake()
     {
         inventory = new InventoryBase[inventorySize];
+        displayedInventory = new InventoryBase[inventorySize];
+        shelfSlots = FindAnyObjectByType<SalesManager>().shelfSlots;
     }
 
     public void AddToInventory(InventoryBase _itemToAdd)
@@ -30,5 +32,23 @@ public class InventoryManager : MonoBehaviour
         }
 
         Debug.Log("Inventory full");
+    }
+
+
+    public bool SetItemsOnShelf(InventoryBase _itemToAdd)
+    {
+
+        for (int i = 0; i < inventorySize; i++)
+        {
+            if (displayedInventory[i] == null)
+            {
+                displayedInventory[i] = _itemToAdd;
+                shelfSlots[i].sprite = _itemToAdd.shelfSprite;
+                return true;
+            }
+        }
+
+        Debug.Log("Can't display anything else");
+        return false;
     }
 }
