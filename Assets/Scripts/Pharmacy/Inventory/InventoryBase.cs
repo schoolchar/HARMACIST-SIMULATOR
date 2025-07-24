@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu]
-public class InventoryBase : ScriptableObject
+public class InventoryBase : ScriptableObject //The further we get on this the more I think this shouldn't be a scriptable object but now I'm commited
 {
     public string itemName;
     public Sprite shelfSprite;

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IteractWItems : MonoBehaviour
 {
-    InventoryManager inventoryManager;
+    protected InventoryManager inventoryManager;
     public InventoryBase inventoryBase;
 
     private void Start()
@@ -12,7 +12,7 @@ public class IteractWItems : MonoBehaviour
         inventoryManager = FindAnyObjectByType<InventoryManager>();
     }
 
-    private void OnMouseDown()
+    protected virtual void OnMouseDown()
     {
         inventoryManager.AddToInventory(inventoryBase);
         Destroy(this.gameObject);
